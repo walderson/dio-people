@@ -1,5 +1,6 @@
 package one.digitalinnovation.personapi.service;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.request.PersonDto;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDto;
 import one.digitalinnovation.personapi.entity.Person;
@@ -12,15 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @Service
 public class PersonService {
     private PersonRepository repository;
     private final PersonMapper mapper = PersonMapper.INSTANCE;
-
-    @Autowired
-    public PersonService(PersonRepository repository) {
-        this.repository = repository;
-    }
 
     public MessageResponseDto createPerson(PersonDto personDto) {
         Person personToSave = mapper.toModel(personDto);
